@@ -5,7 +5,7 @@
       color="pink"
       dense
     >
-      <v-app-bar-nav-icon color="white"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon color="white" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
       <v-toolbar-title class="white--text">Rick & Morty</v-toolbar-title>
 
@@ -158,7 +158,7 @@
             </div>
 
                <v-card-actions>
-                <v-btn color="orange" text>
+                <v-btn @click="seeMoreDetails(character.episode)" color="orange" text>
                   See More
                 </v-btn>
               </v-card-actions>
@@ -195,8 +195,73 @@
           </v-icon>
         </v-btn>
       </v-col>
+
       </v-row>
+
+      <v-dialog width="310" v-model="dialog">
+        <v-card color="#606268">
+
+        <v-card-title class="headline grey lighten-2">
+          Amount of episodes: {{episode}}
+        </v-card-title>
+
+        <v-divider></v-divider>
+        
+        <v-card-actions class="justify-space-between">
+
+          <v-btn
+            color="red lighten-2"
+            dark
+            @click="dialog = false, episode = null"
+          >
+             Closed
+          </v-btn>
+          
+          <v-btn
+            color="orange"
+            outlined
+          >
+            See Episodes
+          </v-btn>
+
+        </v-card-actions>
+
+          
+        </v-card>
+      </v-dialog>
+
     </v-container>
+
+    
+    <v-navigation-drawer
+      v-model="drawer"
+      absolute
+      temporary
+    >
+      <v-list-item>
+        <v-list-item-content>
+          <v-list-item-title>Menu</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+
+      <v-divider></v-divider>
+
+      <v-list dense>
+        <v-list-item
+          v-for="item in items"
+          :key="item.title"
+          link
+        >
+          <v-list-item-icon>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
 
     <v-main>
 
@@ -218,7 +283,15 @@ export default {
   data() {
     return {
       arrayCharacter:[],
-      numPage:1
+      numPage:1,
+      drawer: null,
+        items: [
+          { title: 'Characters', icon: 'mdi-account-group' },
+          { title: 'Locations', icon: 'mdi-earth' },
+          { title: 'Episodes', icon: 'mdi-movie-open' }
+        ],
+      dialog: false,
+      episode: null
     };
   },
   created(){
@@ -239,6 +312,11 @@ export default {
 
   scrollTop(){
     window.scrollTo(0, 0);
+  },
+
+  seeMoreDetails(ev){
+    this.episode = ev.length
+    this.dialog = true
   }
 
   }

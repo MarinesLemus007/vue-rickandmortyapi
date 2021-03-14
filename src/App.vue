@@ -1,7 +1,26 @@
 <template>
   <v-app style="background-color: #364047">
+
+    <v-app-bar
+      color="pink"
+      dense
+    >
+      <v-app-bar-nav-icon color="white"></v-app-bar-nav-icon>
+
+      <v-toolbar-title class="white--text">Rick & Morty</v-toolbar-title>
+
+      <v-spacer></v-spacer>
+      <h3 class="black--text">Character</h3>
+      <v-icon
+      right
+      color="white"
+      >
+        mdi-account-group
+      </v-icon>
+    </v-app-bar>
+
     <v-container>
-      <v-row>
+      <v-row class="mt-5">
         <v-col
           xs="12" sm="6" md="3"
           v-for="(character, index) in arrayCharacter"
@@ -27,7 +46,37 @@
 
             <v-card-text class="text--primary">
 
-              <div><h3 class="white--text">{{character.name}}</h3></div>
+              <div class="d-flex">
+                <h3 class="white--text">{{character.name}}</h3>
+
+                <v-icon
+                v-if="character.gender === 'Male'"
+                color="blue lighten-1"
+                right
+                small
+                >
+                mdi-gender-male
+                </v-icon>
+
+                <v-icon
+                v-if="character.gender === 'unknown'"
+                color="gray"
+                right
+                small
+                >
+                mdi-gender-male-female
+                </v-icon>
+
+                <v-icon
+                v-if="character.gender === 'Female'"
+                color="pink lighten-2"
+                right
+                small
+                >
+                mdi-gender-female
+                </v-icon>
+
+              </div>
 
               <div class="d-flex">
 
@@ -185,8 +234,19 @@ export default {
         (this.arrayCharacter = response.data.results)
       )
 
+      this.scrollTop()
+  },
+
+  scrollTop(){
+    window.scrollTo(0, 0);
   }
 
   }
 };
 </script>
+
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+</style>

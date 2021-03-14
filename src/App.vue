@@ -110,7 +110,7 @@
 
                <v-card-actions>
                 <v-btn color="orange" text>
-                  Ver más
+                  See More
                 </v-btn>
               </v-card-actions>
 
@@ -118,6 +118,34 @@
 
           </v-card>
         </v-col>
+
+      <v-col cols="12" class="d-flex justify-center align-center">
+        <v-btn v-if="numPage > 1" @click="getCharacter(numPage = numPage - 1)" text color="orange">
+           <v-icon
+          small
+          left
+          color="orange"
+          >
+            mdi-chevron-left
+          </v-icon>
+          previous
+        </v-btn>
+
+        <div class="px-5 py-3 mx-3 secondary rounded-circle d-inline-block white--text">
+          {{numPage}}
+        </div>
+
+        <v-btn v-if="numPage <= 33" @click="getCharacter(numPage = numPage + 1)" text color="orange">
+          Next
+          <v-icon
+          small
+          right
+          color="orange"
+          >
+            mdi-chevron-right
+          </v-icon>
+        </v-btn>
+      </v-col>
       </v-row>
     </v-container>
 
@@ -141,16 +169,24 @@ export default {
   data() {
     return {
       arrayCharacter:[],
+      numPage:1
     };
   },
-  mounted() {
-    const urlApiCharacter = "https://rickandmortyapi.com/api/character"
+  created(){
+    this.getCharacter(this.numPage)
+  },
+  methods:{
+    getCharacter(num) {
+    const urlApiCharacter = `https://rickandmortyapi.com/api/character/?page=${num}`
 
     axios
       .get(urlApiCharacter)
       .then(response => 
         (this.arrayCharacter = response.data.results)
       )
-  },
+
+  }
+
+  }
 };
 </script>

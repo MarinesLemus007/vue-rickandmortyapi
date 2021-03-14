@@ -202,6 +202,7 @@
           <v-btn
             color="orange"
             outlined
+            to ='/Episodes'
           >
             See Episodes
           </v-btn>

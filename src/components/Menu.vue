@@ -33,10 +33,12 @@
         <v-divider></v-divider>
 
         <v-list dense>
+
           <v-list-item
             v-for="item in items"
             :key="item.title"
             link
+            :to ="item.title"
           >
             <v-list-item-icon>
               <v-icon>{{ item.icon }}</v-icon>
@@ -46,8 +48,11 @@
               <v-list-item-title>{{ item.title }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
+
         </v-list>
+        
       </v-navigation-drawer>
+      
   </div>
 
 </template>
@@ -60,7 +65,7 @@
       return{
         drawer: null,
         items: [
-          { title: 'Characters', icon: 'mdi-account-group' },
+          { title: 'Characters', icon: 'mdi-account-group'},
           { title: 'Locations', icon: 'mdi-earth' },
           { title: 'Episodes', icon: 'mdi-movie-open' }
         ],

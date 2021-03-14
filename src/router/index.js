@@ -5,15 +5,25 @@ Vue.use(VueRouter)
 
 const routes = [ 
   {
+    path: '/',
+    name: 'Home',
+    component: () => import(/* webpackChunkName: "/" */ '../views/Home.vue')
+  },
+  {
     path: '/characters',
     name: 'Characters',
     component: () => import(/* webpackChunkName: "characters" */ '../views/Characters.vue')
   },
   {
-    path: '/about',
-    name: 'About',
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+    path: '/locations',
+    name: 'Locations',
+    component: () => import(/* webpackChunkName: "locations" */ '../views/Locations.vue')
+  },
+  {
+    path: '/episodes',
+    name: 'Episodes',
+    component: () => import(/* webpackChunkName: "episodes" */ '../views/Episodes.vue')
+  },
 ]
 
 const router = new VueRouter({

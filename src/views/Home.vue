@@ -21,7 +21,7 @@
         <v-row>
             <v-col>
                 <div class="xs-column text-xs-align-center d-sm-flex align-center justify-center">
-                    <h1 class="white--text">See you all:</h1>
+                    <h1 class="white--text">See all about:</h1>
 
                     <v-btn class="mx-2" to="/Characters" color="pink" dark small>
                         Characters
@@ -45,7 +45,9 @@
 
 <script>
 export default {
-  
+    name: "Home",
+    data: () => ({
+    })
 }
 </script>
 

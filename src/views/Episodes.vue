@@ -1,11 +1,11 @@
 <template>
   <v-container>
       <v-row class="justify-center mt-5"  dense>
-          <v-col v-for="(episodes, index) in arrayLocations" :key="index" cols="12" sm="6" md="6" lg="4">
+          <v-col v-for="(episodes, index) in arrayResponseApi" :key="index" cols="12" sm="6" md="6" lg="4">
               
             <v-card
                 elevation="5"
-                color="#1F7087"
+                color="#826082"
                 dark
             >
 
@@ -23,7 +23,7 @@
           </v-col>
 
           <v-col cols="12" class="d-flex justify-center align-center">
-            <v-btn v-if="numPage > 1" @click="getCharacter(numPage = numPage - 1)" text color="orange">
+            <v-btn v-if="numPage > 1" @click="previousPage(), getApiRest(fragmentUrl)" text color="orange">
             <v-icon
             small
             left
@@ -38,7 +38,7 @@
           {{numPage}}
         </div>
 
-        <v-btn v-if="numPage <= 2" @click="getCharacter(numPage = numPage + 1)" text color="orange">
+        <v-btn v-if="numPage <= 2" @click="nextPage(), getApiRest(fragmentUrl)" text color="orange">
           Next
           <v-icon
           small
@@ -54,32 +54,34 @@
 </template>
 
 <script>
-import axios from 'axios';
 
-  export default {
+import { mapState, mapMutations } from "vuex";
 
-    data: () => ({
-        arrayLocations: [],
-        numPage:1,
-    }),
-    created(){
-    this.getCharacter(this.numPage)
+export default {
+  name: "Episodes",
+
+  data: () => ({
+    fragmentUrl: "episode",
+  }),
+  computed: {
+    ...mapState([
+      "arrayResponseApi",
+      "numPage"
+    ]),
   },
-  methods:{
-    getCharacter(num) {
-    const urlApiCharacter = `https://rickandmortyapi.com/api/episode/?page=${num}`
-
-    axios
-      .get(urlApiCharacter)
-      .then(response =>
-        (this.arrayLocations = response.data.results)
-      )
-
-    this.scrollTop()
+  methods: {
+    ...mapMutations([
+      "getApiRest",
+      "nextPage",
+      "previousPage",
+      "resetNumPage"
+    ]),
   },
-    scrollTop(){
-    window.scrollTo(0, 0);
+  mounted() {
+    this.getApiRest(this.fragmentUrl);
   },
+  beforeDestroy(){
+    this.resetNumPage()
   }
-}
+};
 </script>

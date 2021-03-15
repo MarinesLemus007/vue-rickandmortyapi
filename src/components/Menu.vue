@@ -8,15 +8,6 @@
         <v-app-bar-nav-icon color="white" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
         <v-toolbar-title class="white--text">Rick & Morty</v-toolbar-title>
-
-        <v-spacer></v-spacer>
-        <h3 class="black--text">Character</h3>
-        <v-icon
-        right
-        color="white"
-        >
-          mdi-account-group
-        </v-icon>
       </v-app-bar>
 
       <v-navigation-drawer
@@ -38,7 +29,7 @@
             v-for="item in items"
             :key="item.title"
             link
-            :to ="item.title"
+            :to ="item.title === 'Home'? '/' : item.title"
           >
             <v-list-item-icon>
               <v-icon>{{ item.icon }}</v-icon>
@@ -65,6 +56,7 @@
       return{
         drawer: null,
         items: [
+          { title: 'Home', icon: 'mdi-home' },
           { title: 'Characters', icon: 'mdi-account-group'},
           { title: 'Locations', icon: 'mdi-earth' },
           { title: 'Episodes', icon: 'mdi-movie-open' }

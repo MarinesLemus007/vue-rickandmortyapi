@@ -2,16 +2,16 @@
     <div>
 
     <v-container>
-        <v-row class="mt-5">
+        <v-row class="mt-5" >
             <v-col>
-                <div class="d-flex justify-center">
+                <div class="xs-column text-xs-align-center d-md-flex justify-center">
                     <img
-                    style="max-width: 320px; height: auto;"
+                    style="max-width: 300px; height: auto;"
                     src="../assets/img_rickandmorty_text.png"
                     >
                 
                     <img
-                    style="max-width: 320px; height: auto;"
+                    style="max-width: 300px; height: auto;"
                     src="../assets/img_rickandmorty.png"
                     >
                 </div>
@@ -20,7 +20,7 @@
 
         <v-row>
             <v-col>
-                <div class="d-flex align-center justify-center">
+                <div class="xs-column text-xs-align-center d-sm-flex align-center justify-center">
                     <h1 class="white--text">See you all:</h1>
 
                     <v-btn class="mx-2" to="/Characters" color="pink" dark small>
@@ -31,7 +31,7 @@
                         Locations
                     </v-btn>
 
-                    <v-btn to="/Episodes" color="pink" dark small>
+                    <v-btn class="mt-xxs" to="/Episodes" color="pink" dark small>
                         Episodes
                     </v-btn>
                 </div>
@@ -48,3 +48,17 @@ export default {
   
 }
 </script>
+
+<style>
+@media only screen and (max-width: 960px) {
+    .text-xs-align-center{
+        text-align:center
+    }
+}
+
+@media only screen and (max-width: 350px) {
+    .mt-xxs{
+        margin-top: 10px;
+    }
+}
+</style>

@@ -23,7 +23,7 @@
           v-for="item in items"
           :key="item.title"
           link
-          :to="item.title === 'Home' ? '/' : item.title"
+          :to="item.title"
         >
           <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
@@ -34,6 +34,7 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
+      
     </v-navigation-drawer>
   </div>
 </template>

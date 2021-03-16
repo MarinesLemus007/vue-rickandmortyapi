@@ -10,17 +10,17 @@ const routes = [
     component: () => import(/* webpackChunkName: "/" */ '../views/Home.vue')
   },
   {
-    path: '/characters',
+    path: '/Characters',
     name: 'Characters',
     component: () => import(/* webpackChunkName: "characters" */ '../views/Characters.vue')
   },
   {
-    path: '/locations',
+    path: '/Locations',
     name: 'Locations',
     component: () => import(/* webpackChunkName: "locations" */ '../views/Locations.vue')
   },
   {
-    path: '/episodes',
+    path: '/Episodes',
     name: 'Episodes',
     component: () => import(/* webpackChunkName: "episodes" */ '../views/Episodes.vue')
   }

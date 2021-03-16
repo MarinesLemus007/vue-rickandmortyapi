@@ -79,7 +79,7 @@ export default {
       "resetNumPage"
     ]),
   },
-  mounted() {
+  created() {
     this.getApiRest(this.fragmentUrl);
   },
   beforeDestroy(){

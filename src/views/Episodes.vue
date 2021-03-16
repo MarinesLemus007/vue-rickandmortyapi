@@ -1,7 +1,11 @@
 <template>
   <v-container>
       <v-row class="justify-center mt-5"  dense>
-          <v-col v-for="(episodes, index) in arrayResponseApi" :key="index" cols="12" sm="6" md="6" lg="4">
+          <v-col 
+          v-for="(episodes, index) in arrayResponseApi"
+          :key="index"
+          cols="12" sm="6" md="6" lg="4"
+          >
               
             <v-card
                 elevation="5"
@@ -77,7 +81,7 @@ export default {
       "resetNumPage"
     ]),
   },
-  mounted() {
+  created() {
     this.getApiRest(this.fragmentUrl);
   },
   beforeDestroy(){

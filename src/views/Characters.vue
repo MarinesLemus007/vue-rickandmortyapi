@@ -1,5 +1,4 @@
 <template>
-  <div>
     <v-container>
       <v-row class="mt-5">
         <v-col
@@ -189,7 +188,6 @@
         </v-card>
       </v-dialog>
     </v-container>
-  </div>
 </template>
 
 <script>

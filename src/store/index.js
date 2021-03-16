@@ -9,20 +9,17 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    arrayResponseApi:[],
-    numPage: 1,
-    urlWindow:''
+    arrayResponseApi: null,
+    numPage: 1
   },
   mutations: {
     async getApiRest( state, fragment) {
       try{
         const urlApi = `https://rickandmortyapi.com/api/${fragment}/?page=${state.numPage}`
-    
-        await axios
-          .get(urlApi)
-          .then(response => 
-            (state.arrayResponseApi = response.data.results)
-      )}
+      
+        let response = await axios.get(urlApi);
+        state.arrayResponseApi = response.data.results;
+      }
       catch(error){
           console.log(error)
       }

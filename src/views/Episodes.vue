@@ -65,7 +65,7 @@ export default {
   name: "Episodes",
 
   data: () => ({
-    fragmentUrl: "episode",
+    fragmentUrl: 'episode',
   }),
   computed: {
     ...mapState([
@@ -81,10 +81,13 @@ export default {
       "resetNumPage"
     ]),
   },
-  created() {
+  created(){
+    this.resetNumPage();
+  },
+  beforeMount() {
     this.getApiRest(this.fragmentUrl);
   },
-  beforeDestroy(){
+    beforeDestroy(){
     this.resetNumPage()
   }
 };

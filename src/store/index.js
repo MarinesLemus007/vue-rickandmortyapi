@@ -13,11 +13,20 @@ export default new Vuex.Store({
     numPage: 1
   },
   mutations: {
-    async getApiRest( state, fragment) {
+    resetNumPage(state){
+      (state.numPage = 1)  
+    },
+    nextPage(state){
+      (state.numPage = state.numPage + 1)
+    },
+    previousPage(state){
+      (state.numPage = state.numPage - 1)
+    },
+    async getApiRest(state, fragment) {
       try{
         const urlApi = `https://rickandmortyapi.com/api/${fragment}/?page=${state.numPage}`
-      
         let response = await axios.get(urlApi);
+      
         state.arrayResponseApi = response.data.results;
       }
       catch(error){
@@ -26,17 +35,6 @@ export default new Vuex.Store({
       finally{
           window.scrollTo(0, 0);
       }
-    },
-
-    nextPage(state){
-      (state.numPage = state.numPage + 1)
-    },
-
-    previousPage(state){
-      (state.numPage = state.numPage - 1)
-    },
-    resetNumPage(state){
-      (state.numPage = 1)
     }
   },
   actions: {

@@ -63,7 +63,7 @@ export default {
   name: "Locations",
 
   data: () => ({
-    fragmentUrl: "location",
+    fragmentUrl: 'location'
   }),
   computed: {
     ...mapState([
@@ -79,10 +79,13 @@ export default {
       "resetNumPage"
     ]),
   },
-  created() {
+  created(){
+    this.resetNumPage();
+  },
+  beforeMount() {
     this.getApiRest(this.fragmentUrl);
   },
-  beforeDestroy(){
+    beforeDestroy(){
     this.resetNumPage()
   }
 };

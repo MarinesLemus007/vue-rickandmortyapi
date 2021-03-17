@@ -6,7 +6,7 @@
           sm="6"
           md="3"
           v-for="(character, index) in arrayResponseApi"
-          :key="index"
+          :key="index" 
         >
           <v-card
             class="mx-auto mb-5"
@@ -198,7 +198,7 @@ export default {
   name: "Characters",
 
   data: () => ({
-    fragmentUrl: "character",
+    fragmentUrl: 'character',
     dialog: false,
     episode: null
   }),
@@ -210,17 +210,20 @@ export default {
   },
   methods: {
     ...mapMutations([
+      "resetNumPage",
       "getApiRest",
       "nextPage",
-      "previousPage",
-      "resetNumPage"
+      "previousPage"
     ]),
     seeMoreDetails(ev) {
       this.episode = ev.length;
       this.dialog = true;
       },
   },
-  created() {
+  created(){
+    this.resetNumPage();
+  },
+  beforeMount() {
     this.getApiRest(this.fragmentUrl);
   },
   beforeDestroy(){
